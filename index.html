@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цифровая культура и технологии: от искусства до медиа</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #6ee7b7 0%, #3b82f6 50%, #8b5cf6 100%);
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .tech-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #8b5cf6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <div class="container mx-auto px-6 py-12 md:py-24">
+            <nav class="flex justify-between items-center mb-12">
+                <div class="text-2xl font-bold">DigitalCulture</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link">О курсе</a>
+                    <a href="#program" class="nav-link">Программа</a>
+                    <a href="#authors" class="nav-link">Авторы</a>
+                    <a href="#reviews" class="nav-link">Отзывы</a>
+                    <a href="#register" class="nav-link">Регистрация</a>
+                </div>
+                <button class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Цифровая культура и технологии: от искусства до медиа</h1>
+                    <p class="text-xl mb-8">Интерактивный курс для исследователей и творческих профессионалов, изучающих влияние цифровых технологий на современную культуру</p>
+                    <a href="#register" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300 inline-block">Записаться на курс</a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://illustrations.popsy.co/amber/digital-nomad.svg" alt="Digital Culture" class="w-3/4 animate-float">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Course -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">О курсе</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row mb-16">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold mb-4">Для кого этот курс?</h3>
+                    <p class="text-gray-600 mb-6">Курс предназначен для преподавателей и студентов творческих специальностей (культурология, искусствоведение, дизайн, филология), а также для исследователей в области цифровой гуманитаристики (Digital Humanities).</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-user-graduate text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Студенты</h4>
+                                <p class="text-gray-600">Получите актуальные знания о цифровой трансформации культуры</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-chalkboard-teacher text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Преподаватели</h4>
+                                <p class="text-gray-600">Интегрируйте современные подходы в свои учебные программы</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-teal-100 p-2 rounded-full mr-4">
+                                <i class="fas fa-search text-teal-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Исследователи</h4>
+                                <p class="text-gray-600">Расширьте методологическую базу для научной работы</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-8">
+                    <h3 class="text-2xl font-semibold mb-4">Формат обучения</h3>
+                    <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-500 text-white p-2 rounded-full mr-4">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Видеолекции</h4>
+                                <p class="text-gray-600">Доступ к материалам 24/7</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-500 text-white p-2 rounded-full mr-4">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Практические задания</h4>
+                                <p class="text-gray-600">Применение знаний на практике</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <div class="bg-teal-500 text-white p-2 rounded-full mr-4">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Обсуждения</h4>
+                                <p class="text-gray-600">Форум для обмена мнениями</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-indigo-500 text-white p-2 rounded-full mr-4">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Сертификат</h4>
+                                <p class="text-gray-600">По окончании курса</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <h4 class="font-semibold mb-2">Длительность курса</h4>
+                        <p class="text-gray-600 mb-4">6 недель интенсивного обучения (4-6 часов в неделю)</p>
+                        <div class="flex justify-between text-sm">
+                            <div class="text-center">
+                                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 shadow">
+                                    <i class="fas fa-calendar-day text-purple-600"></i>
+                                </div>
+                                <p>Гибкий график</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 shadow">
+                                    <i class="fas fa-book text-blue-600"></i>
+                                </div>
+                                <p>6 модулей</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-2 shadow">
+                                    <i class="fas fa-chart-line text-teal-600"></i>
+                                </div>
+                                <p>Практика</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <h3 class="text-2xl font-semibold mb-6">Технологии, которые мы изучаем</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="tech-icon bg-white p-4 rounded-xl shadow-md">
+                        <i class="fas fa-paint-brush text-4xl text-purple-600"></i>
+                        <p class="mt-2">Цифровое искусство</p>
+                    </div>
+                    <div class="tech-icon bg-white p-4 rounded-xl shadow-md">
+                        <i class="fas fa-music text-4xl text-blue-600"></i>
+                        <p class="mt-2">Цифровая музыка</p>
+                    </div>
+                    <div class="tech-icon bg-white p-4 rounded-xl shadow-md">
+                        <i class="fas fa-tshirt text-4xl text-teal-600"></i>
+                        <p class="mt-2">Цифровая мода</p>
+                    </div>
+                    <div class="tech-icon bg-white p-4 rounded-xl shadow-md">
+                        <i class="fas fa-film text-4xl text-indigo-600"></i>
+                        <p class="mt-2">Техноэстетика</p>
+                    </div>
+                    <div class="tech-icon bg-white p-4 rounded-xl shadow-md">
+                        <i class="fas fa-book-open text-4xl text-purple-600"></i>
+                        <p class="mt-2">Цифровая литература</p>
+                    </div>
+                    <div class="tech-icon bg-white p-4 rounded-xl shadow-md">
+                        <i class="fas fa-brain text-4xl text-blue-600"></i>
+                        <p class="mt-2">Искусственный интеллект</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program -->
+    <section id="program" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Программа курса</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <button onclick="changeTab(1)" class="tab-btn active px-6 py-2 bg-purple-600 text-white rounded-full">Блок 1</button>
+                <button onclick="changeTab(2)" class="tab-btn px-6 py-2 bg-white text-purple-600 rounded-full border border-purple-600">Блок 2</button>
+                <button onclick="changeTab(3)" class="tab-btn px-6 py-2 bg-white text-purple-600 rounded-full border border-purple-600">Блок 3</button>
+                <button onclick="changeTab(4)" class="tab-btn px-6 py-2 bg-white text-purple-600 rounded-full border border-purple-600">Блок 4</button>
+                <button onclick="changeTab(5)" class="tab-btn px-6 py-2 bg-white text-purple-600 rounded-full border border-purple-600">Блок 5</button>
+                <button onclick="changeTab(6)" class="tab-btn px-6 py-2 bg-white text-purple-600 rounded-full border border-purple-600">Финальное задание</button>
+            </div>
+            
+            <div id="tab1" class="tab-content active">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-purple-50 p-8 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-6xl text-purple-600"></i>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-4">Блок 1. Веб-дизайн. Начало цифровой культуры</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Что такое веб-дизайн и как он связан с культурой?</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Основные методы дизайна сайтов</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>"Кто у кого подсмотрел": профессиональные и любительские веб-сайты</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Пользователи решают: хостинг-платформы и персональные сайты</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Итоговое задание блока 1</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab2" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-blue-50 p-8 flex items-center justify-center">
+                            <i class="fas fa-music text-6xl text-blue-600"></i>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-4">Блок 2. Цифровая революция в музыке</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-blue-600 text-xs"></i>
+                                    </div>
+                                    <span>Как цифровые технологии изменили музыкальную индустрию навсегда</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-blue-600 text-xs"></i>
+                                    </div>
+                                    <span>Стриминговые сервисы и распространение треков</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-blue-600 text-xs"></i>
+                                    </div>
+                                    <span>Технологии для развития музыкальной индустрии</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-blue-600 text-xs"></i>
+                                    </div>
+                                    <span>Подкастинг – уже не музыка, ещё не текст</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-blue-600 text-xs"></i>
+                                    </div>
+                                    <span>Итоговое задание блока 2</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab3" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-teal-50 p-8 flex items-center justify-center">
+                            <i class="fas fa-tshirt text-6xl text-teal-600"></i>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-4">Блок 3. Цифровая мода. От функциональности к виртуальному стилю</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-teal-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-teal-600 text-xs"></i>
+                                    </div>
+                                    <span>Как мода может быть цифровой?</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-teal-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-teal-600 text-xs"></i>
+                                    </div>
+                                    <span>Новые тенденции (цвет, материал, форма)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-teal-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-teal-600 text-xs"></i>
+                                    </div>
+                                    <span>Цифровая мода как индустрия будущего</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-teal-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-teal-600 text-xs"></i>
+                                    </div>
+                                    <span>Итоговое задание блока 3</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab4" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-indigo-50 p-8 flex items-center justify-center">
+                            <i class="fas fa-film text-6xl text-indigo-600"></i>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-4">Блок 4. Техноэстетика на экране: как человек осмысляет технологию</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-indigo-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-indigo-600 text-xs"></i>
+                                    </div>
+                                    <span>Что такое техноэстетика (на материале исследований Симондона)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-indigo-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-indigo-600 text-xs"></i>
+                                    </div>
+                                    <span>Технические тренды в киноиндустрии</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-indigo-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-indigo-600 text-xs"></i>
+                                    </div>
+                                    <span>Репрезентация технических трендов: образ ИИ в кино</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-indigo-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-indigo-600 text-xs"></i>
+                                    </div>
+                                    <span>Итоговое задание блока 4</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab5" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-purple-50 p-8 flex items-center justify-center">
+                            <i class="fas fa-book-open text-6xl text-purple-600"></i>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-4">Блок 5. Литература и язык в цифровом пространстве</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Тренды литературного творчества в цифровую эпоху</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Трансформация восприятия и создания текста: академический и медиа-аспекты</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Языковые трансформации: зачем нам "переводчики на молодёжный" и причём тут технологии</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 p-1 rounded-full mr-3 mt-1">
+                                        <i class="fas fa-check text-purple-600 text-xs"></i>
+                                    </div>
+                                    <span>Итоговое задание блока 5</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab6" class="tab-content">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-gray-50 p-8 flex items-center justify-center">
+                            <i class="fas fa-trophy text-6xl text-gray-600"></i>
+                        </div>
+                        <div class="md:w-2/3 p-8">
+                            <h3 class="text-2xl font-bold mb-4">Блок 6. Финальное задание курса</h3>
+                            <p class="mb-6">Итоговый проект, объединяющий знания из всех модулей курса. Участники разрабатывают собственное исследование или творческий проект, демонстрирующий понимание влияния цифровых технологий на выбранный аспект культуры.</p>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">Примерные темы:</h4>
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Анализ цифровой трансформации в конкретной культурной сфере</li>
+                                    <li>Создание цифрового арт-проекта с обоснованием выбранных технологий</li>
+                                    <li>Исследование влияния ИИ на творческие профессии</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authors -->
+    <section id="authors" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Авторы и эксперты</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-purple-100">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Автор курса" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Анна Смирнова</h3>
+                    <p class="text-purple-600 font-medium mb-4">Куратор курса, PhD по цифровой культуре</p>
+                    <p class="text-gray-600">Автор более 30 научных работ по цифровой гуманитаристике, руководитель исследовательского центра Digital Humanities.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-100">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Эксперт" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Иван Петров</h3>
+                    <p class="text-blue-600 font-medium mb-4">Эксперт по цифровому искусству</p>
+                    <p class="text-gray-600">Художник и исследователь, специалист по взаимодействию традиционного и цифрового искусства, куратор международных выставок.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-teal-100">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Эксперт" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Елена Козлова</h3>
+                    <p class="text-teal-600 font-medium mb-4">Эксперт по техноэстетике</p>
+                    <p class="text-gray-600">Философ, специалист по эстетике технологий, автор монографии "Техноэстетика: между искусством и утилитарностью".</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-indigo-100">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Эксперт" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Дмитрий Волков</h3>
+                    <p class="text-indigo-600 font-medium mb-4">Эксперт по цифровой музыке</p>
+                    <p class="text-gray-600">Композитор, звукорежиссер, исследователь влияния цифровых технологий на музыкальную индустрию.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-purple-100">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Эксперт" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Ольга Белова</h3>
+                    <p class="text-purple-600 font-medium mb-4">Эксперт по цифровой моде</p>
+                    <p class="text-gray-600">Дизайнер, исследователь цифровой моды, участник проекта по созданию виртуальной одежды для метавселенных.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-blue-100">
+                        <img src="https://randomuser.me/api/portraits/men/90.jpg" alt="Эксперт" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Алексей Семенов</h3>
+                    <p class="text-blue-600 font-medium mb-4">Эксперт по цифровой литературе</p>
+                    <p class="text-gray-600">Филолог, специалист по цифровым нарративам, автор исследований о трансформации литературы в цифровую эпоху.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Отзывы и кейсы</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-quote-left text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Мария, культуролог</h3>
+                            <p class="text-gray-500 text-sm">Выпускница 2023</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Курс полностью изменил мой взгляд на современную культуру. Особенно ценными были модули о цифровой моде и техноэстетике. Полученные знания помогли мне в моем исследовании цифрового искусства."</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-quote-left text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Александр, преподаватель дизайна</h3>
+                            <p class="text-gray-500 text-sm">Выпускник 2022</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Отличный баланс теории и практики. Я интегрировал несколько кейсов из курса в свою учебную программу. Студенты особенно оценили анализ влияния ИИ на дизайн-процессы."</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-quote-left text-teal-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Екатерина, исследователь Digital Humanities</h3>
+                            <p class="text-gray-500 text-sm">Выпускница 2023</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Курс предоставил отличную методологическую базу для моей научной работы. Модуль о цифровой литературе стал основой для одной из глав моей диссертации."</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-quote-left text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Денис, студент-филолог</h3>
+                            <p class="text-gray-500 text-sm">Выпускник 2023</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Потрясающий курс! Особенно понравился анализ языковых трансформаций в цифровую эпоху. Полученные знания помогли мне в исследовании интернет-дискурса."</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-gradient-to-br from-purple-500 to-blue-500 p-8 flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-6xl text-white"></i>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h3 class="text-2xl font-bold mb-4">Пример исследования из курса</h3>
+                        <h4 class="text-xl font-semibold mb-2">"Образ искусственного интеллекта в современном кинематографе"</h4>
+                        <p class="text-gray-600 mb-4">Этот кейс анализирует, как менялось представление об ИИ в фильмах за последние 20 лет, и какие технологические тренды повлияли на эти изменения.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">кино</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">ИИ</span>
+                            <span class="bg-teal-100 text-teal-800 text-xs px-3 py-1 rounded-full">техноэстетика</span>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">культурология</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration -->
+    <section id="register" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Записаться на курс</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 gradient-bg text-white p-12 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold mb-4">Начните обучение уже сегодня</h3>
+                        <p class="mb-6">Присоединяйтесь к сообществу исследователей и практиков, изучающих цифровую трансформацию культуры.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Доступ к материалам на 12 месяцев</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Обратная связь от экспертов</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Сертификат об окончании</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle mr-3"></i>
+                                <span>Доступ к закрытому сообществу</span>
+                            </li>
+                        </ul>
+                        <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                            <p class="font-semibold">Стоимость курса:</p>
+                            <p class="text-3xl font-bold">14 900 ₽</p>
+                            <p class="text-sm opacity-80">или 4 900 ₽ за модуль</p>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 p-12">
+                        <form id="registrationForm" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Имя</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                            </div>
+                            <div>
+                                <label for="profession" class="block text-gray-700 font-medium mb-2">Профессия/специальность</label>
+                                <input type="text" id="profession" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+                            </div>
+                            <div>
+                                <label for="interest" class="block text-gray-700 font-medium mb-2">Какой модуль вас интересует больше всего?</label>
+                                <select id="interest" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                    <option value="">Выберите модуль</option>
+                                    <option value="1">Веб-дизайн и цифровая культура</option>
+                                    <option value="2">Цифровая революция в музыке</option>
+                                    <option value="3">Цифровая мода</option>
+                                    <option value="4">Техноэстетика на экране</option>
+                                    <option value="5">Литература и язык в цифровом пространстве</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="agree" class="w-4 h-4 text-purple-600 rounded focus:ring-purple-500" required>
+                                <label for="agree" class="ml-2 text-gray-600 text-sm">Я согласен с условиями обработки персональных данных</label>
+                            </div>
+                            <button type="submit" class="w-full gradient-bg text-white py-3 px-6 rounded-lg font-semibold hover:opacity-90 transition duration-300">Отправить заявку</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Часто задаваемые вопросы</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(1)" class="w-full flex justify-between items-center p-6 text-left">
+                        <h3 class="text-lg font-semibold">Какой уровень подготовки требуется для прохождения курса?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faqIcon1"></i>
+                    </button>
+                    <div id="faqContent1" class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Курс рассчитан на слушателей с разным уровнем подготовки. Для успешного освоения материала достаточно иметь базовые знания в области гуманитарных наук или дизайна. Технические аспекты объясняются доступным языком с примерами.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(2)" class="w-full flex justify-between items-center p-6 text-left">
+                        <h3 class="text-lg font-semibold">Как организован процесс обучения?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faqIcon2"></i>
+                    </button>
+                    <div id="faqContent2" class="px-6 pb-6 hidden">
+                        <p class="text-gray-600 mb-4">Курс состоит из 6 модулей, каждый из которых включает:</p>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                            <li>Видеолекции от экспертов</li>
+                            <li>Дополнительные материалы для самостоятельного изучения</li>
+                            <li>Практические задания с проверкой</li>
+                            <li>Обсуждения в закрытом сообществе</li>
+                        </ul>
+                        <p class="text-gray-600 mt-4">Вы можете изучать материалы в удобном темпе, но для выполнения итогового задания необходимо пройти все модули.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(3)" class="w-full flex justify-between items-center p-6 text-left">
+                        <h3 class="text-lg font-semibold">Можно ли получить сертификат?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faqIcon3"></i>
+                    </button>
+                    <div id="faqContent3" class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Да, при успешном выполнении всех практических заданий и итогового проекта вы получите именной сертификат об окончании курса. Сертификат высылается в электронном виде, а по запросу - в печатном варианте.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <button onclick="toggleFAQ(4)" class="w-full flex justify-between items-center p-6 text-left">
+                        <h3 class="text-lg font-semibold">Есть ли возможность оплаты в рассрочку?</h3>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faqIcon4"></i>
+                    </button>
+                    <div id="faqContent4" class="px-6 pb-6 hidden">
+                        <p class="text-gray-600">Да, мы предлагаем возможность оплаты курса по модулям (4 900 ₽ за модуль) или в рассрочку на 3 месяца через сервисы банков-партнеров. Подробности можно уточнить после заполнения заявки на курс.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Блог и ресурсы</h2>
+                <div class="w-24 h-1 bg-purple-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-pen-fancy text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Как цифровые технологии меняют литературное творчество</h3>
+                        <p class="text-gray-600 mb-4">Анализ новых форм нарративов в цифровую эпоху и их влияние на традиционные литературные жанры.</p>
+                        <a href="#" class="text-purple-600 font-medium inline-flex items-center">Читать статью <i class="fas fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
+                        <i class="fas fa-tshirt text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Виртуальная мода: тренды и перспективы</h3>
+                        <p class="text-gray-600 mb-4">Как цифровые технологии создают новые направления в моде и что нас ждет в будущем.</p>
+                        <a href="#" class="text-blue-600 font-medium inline-flex items-center">Читать статью <i class="fas fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-film text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Эволюция образа ИИ в кино</h3>
+                        <p class="text-gray-600 mb-4">Как менялось представление об искусственном интеллекте в кинематографе за последние 20 лет.</p>
+                        <a href="#" class="text-indigo-600 font-medium inline-flex items-center">Читать статью <i class="fas fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-purple-600 text-purple-600 rounded-full font-medium hover:bg-purple-50 transition duration-300">
+                    Все материалы блога <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Остались вопросы?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Подпишитесь на рассылку, чтобы получать информацию о курсе, полезные материалы и приглашения на бесплатные вебинары.</p>
+            
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Ваш email" class="flex-grow px-4 py-3 rounded-l-lg focus:outline-none text-gray-800">
+                <button type="submit" class="bg-purple-800 px-6 py-3 rounded-r-lg font-medium hover:bg-purple-900 transition duration-300">Подписаться</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">DigitalCulture</h3>
+                    <p class="text-gray-400">Интерактивный курс о влиянии цифровых технологий на современную культуру.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Навигация</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">О курсе</a></li>
+                        <li><a href="#program" class="text-gray-400 hover:text-white transition">Программа</a></li>
+                        <li><a href="#authors" class="text-gray-400 hover:text-white transition">Авторы</a></li>
+                        <li><a href="#reviews" class="text-gray-400 hover:text-white transition">Отзывы</a></li>
+                        <li><a href="#register" class="text-gray-400 hover:text-white transition">Регистрация</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Контакты</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>info@digitalculture.ru</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>+7 (123) 456-78-90</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Москва, ул. Цифровая, 15</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Социальные сети</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-500 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-red-600 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+                <p>© 2023 DigitalCulture. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching for program section
+        function changeTab(tabNumber) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById('tab' + tabNumber).classList.add('active');
+            
+            // Update active tab button
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-purple-600', 'text-white');
+                btn.classList.add('bg-white', 'text-purple-600', 'border', 'border-purple-600');
+            });
+            
+            // Set active state for clicked button
+            event.target.classList.add('active', 'bg-purple-600', 'text-white');
+            event.target.classList.remove('bg-white', 'text-purple-600', 'border', 'border-purple-600');
+        }
+        
+        // FAQ toggle
+        function toggleFAQ(faqNumber) {
+            const content = document.getElementById('faqContent' + faqNumber);
+            const icon = document.getElementById('faqIcon' + faqNumber);
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('transform');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
