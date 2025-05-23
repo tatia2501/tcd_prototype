@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цифровое пространство и культура | Личный кабинет</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6D28D9;
+            --primary-light: #8B5CF6;
+            --dark: #1F2937;
+            --light: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(109,40,217,0.05) 0%, rgba(255,255,255,1) 60%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary-light);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(109, 40, 217, 0.2);
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .lesson-card {
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #E5E7EB;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background-color: var(--primary);
+            transition: width 0.6s ease;
+        }
+        
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+        }
+        
+        .status-not-started {
+            background-color: #E5E7EB;
+            color: #6B7280;
+        }
+        
+        .status-in-progress {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+        
+        .status-completed {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        
+        .block-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .block-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
+            border-left-color: var(--primary);
+        }
+        
+        .block-card.completed {
+            border-left-color: #10B981;
+        }
+        
+        .block-card.in-progress {
+            border-left-color: #F59E0B;
+        }
+        
+        .block-card.not-started {
+            border-left-color: #E5E7EB;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white bg-opacity-95 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-900">Цифровое пространство и культура</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#progress" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Мой прогресс</a>
+                        <a href="#blocks" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Блоки курса</a>
+                        <a href="#tasks" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Задания</a>
+                        <a href="#resources" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Ресурсы</a>
+                        <div class="relative group">
+                            <button class="flex items-center space-x-1 text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                                <span>Иван Петров</span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Личный кабинет</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Настройки</a>
+                                <div class="border-t border-gray-200"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Выйти</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden fixed inset-0 z-40 bg-white bg-opacity-95 pt-16">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+            <a href="#progress" class="block px-3 py-2 text-base font-medium text-gray-900">Мой прогресс</a>
+            <a href="#blocks" class="block px-3 py-2 text-base font-medium text-gray-900">Блоки курса</a>
+            <a href="#tasks" class="block px-3 py-2 text-base font-medium text-gray-900">Задания</a>
+            <a href="#resources" class="block px-3 py-2 text-base font-medium text-gray-900">Ресурсы</a>
+            <div class="border-t border-gray-200 w-full pt-4 mt-2">
+                <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Личный кабинет</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Настройки</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Выйти</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        <!-- Welcome Section -->
+        <section id="welcome" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <h1 class="text-2xl font-bold mb-2">Добро пожаловать, Иван!</h1>
+                            <p class="text-gray-600">Вы начали прохождение курса "Цифровое пространство и культура".</p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <div class="text-sm text-gray-500 mb-1">Прогресс курса</div>
+                                    <div class="text-xl font-bold">25%</div>
+                                </div>
+                                <div class="w-32">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Block Section -->
+        <section id="current" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Текущий блок</h2>
+                <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 shadow-sm">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-2/3 mb-6 md:mb-0">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                    1
+                                </div>
+                                <h3 class="text-xl font-bold">Веб-дизайн. Начало цифровой культуры</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">Исследуем взаимосвязь веб-дизайна и культурных трансформаций.</p>
+                            <div class="flex items-center">
+                                <span class="status-badge status-in-progress mr-3">В процессе</span>
+                                <div class="text-sm text-gray-500">Прогресс: 60%</div>
+                                <div class="w-24 ml-2">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/3 flex items-center justify-end">
+                            <a href="block1.html" class="btn-primary text-white font-medium py-2 px-6 rounded-lg">
+                                Продолжить обучение <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Blocks Section -->
+        <section id="blocks" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Блоки курса</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Block 1 -->
+                    <div class="block-card in-progress bg-white rounded-xl border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                1
+                            </div>
+                            <h3 class="font-bold">Веб-дизайн. Начало цифровой культуры</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Исследуем взаимосвязь веб-дизайна и культурных трансформаций.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="status-badge status-in-progress">В процессе</span>
+                            <a href="block1.html" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                                Перейти <i class="fas fa-chevron-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Block 2 -->
+                    <div class="block-card not-started bg-white rounded-xl border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                2
+                            </div>
+                            <h3 class="font-bold">Цифровая революция в музыке</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Как цифровые технологии изменили музыкальную индустрию навсегда.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="status-badge status-not-started">Не начат</span>
+                            <span class="text-gray-400 text-sm font-medium">
+                                Доступно после блока 1
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Block 3 -->
+                    <div class="block-card not-started bg-white rounded-xl border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                3
+                            </div>
+                            <h3 class="font-bold">Цифровая мода</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">От функциональности к виртуальному стилю.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="status-badge status-not-started">Не начат</span>
+                            <span class="text-gray-400 text-sm font-medium">
+                                Доступно после блока 2
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Block 4 -->
+                    <div class="block-card not-started bg-white rounded-xl border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                4
+                            </div>
+                            <h3 class="font-bold">Техноэстетика на экране</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Как человек осмысляет технологию.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="status-badge status-not-started">Не начат</span>
+                            <span class="text-gray-400 text-sm font-medium">
+                                Доступно после блока 3
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Block 5 -->
+                    <div class="block-card not-started bg-white rounded-xl border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                5
+                            </div>
+                            <h3 class="font-bold">Литература и язык</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Трансформации в цифровом пространстве.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="status-badge status-not-started">Не начат</span>
+                            <span class="text-gray-400 text-sm font-medium">
+                                Доступно после блока 4
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Final Block -->
+                    <div class="block-card not-started bg-white rounded-xl border border-gray-200 p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="font-bold">Финальное задание курса</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Итоговая работа по всем пройденным темам.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="status-badge status-not-started">Не доступно</span>
+                            <span class="text-gray-400 text-sm font-medium">
+                                Доступно после всех блоков
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Tasks Section -->
+        <section id="tasks" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Ближайшие задания</h2>
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="divide-y divide-gray-200">
+                        <!-- Task 1 -->
+                        <div class="p-6 hover:bg-gray-50 transition-colors">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                <div class="mb-4 md:mb-0">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-purple-100 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                                            <i class="fas fa-tasks text-xs"></i>
+                                        </div>
+                                        <h3 class="font-medium">Итоговое задание блока 1</h3>
+                                    </div>
+                                    <p class="text-gray-600 text-sm ml-9">Срок сдачи: 15.06.2023</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="status-badge status-not-started mr-4">Не начато</span>
+                                    <a href="#" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                                        Подробнее <i class="fas fa-chevron-right ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Task 2 -->
+                        <div class="p-6 hover:bg-gray-50 transition-colors">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between">
+                                <div class="mb-4 md:mb-0">
+                                    <div class="flex items-center mb-2">
+                                        <div class="bg-purple-100 text-purple-800 rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                                            <i class="fas fa-question-circle text-xs"></i>
+                                        </div>
+                                        <h3 class="font-medium">Опрос по теме "Профессиональные и любительские сайты"</h3>
+                                    </div>
+                                    <p class="text-gray-600 text-sm ml-9">Доступно после прохождения темы</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="status-badge status-not-started mr-4">Не доступно</span>
+                                    <span class="text-gray-400 text-sm font-medium">
+                                        Откроется 10.06.2023
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="section">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Дополнительные ресурсы</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 rounded-lg p-3 mr-4">
+                                <i class="fas fa-book-open text-purple-600"></i>
+                            </div>
+                            <h3 class="font-bold">Рекомендуемая литература</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Книги и статьи по темам курса для углубленного изучения.</p>
+                        <a href="#" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                            Перейти <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 rounded-lg p-3 mr-4">
+                                <i class="fas fa-link text-purple-600"></i>
+                            </div>
+                            <h3 class="font-bold">Полезные ссылки</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Онлайн-ресурсы, инструменты и примеры по темам курса.</p>
+                        <a href="#" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                            Перейти <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-100 rounded-lg p-3 mr-4">
+                                <i class="fas fa-comments text-purple-600"></i>
+                            </div>
+                            <h3 class="font-bold">Форум курса</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">Обсуждение тем с преподавателями и другими студентами.</p>
+                        <a href="#" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                            Перейти <i class="fas fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-8 border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">
+                        © 2023 Цифровое пространство и культура. Все права защищены.
+                    </p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-purple-600">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-purple-600">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-purple-600">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll reveal animation
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
