@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блок 3. Цифровая мода | Цифровое пространство и культура</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6D28D9;
+            --primary-light: #8B5CF6;
+            --dark: #1F2937;
+            --light: #FFFFFF;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(109,40,217,0.05) 0%, rgba(255,255,255,1) 60%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(109, 40, 217, 0.1);
+        }
+        
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary-light);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(109, 40, 217, 0.2);
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .lesson-card {
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .task-step {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .task-step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--primary);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .block-header {
+            background: linear-gradient(135deg, rgba(109,40,217,0.1) 0%, rgba(255,255,255,1) 100%);
+            border-left: 6px solid var(--primary);
+        }
+        
+        .fashion-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .tech-badge {
+            background-color: rgba(109, 40, 217, 0.1);
+            color: var(--primary);
+            border-radius: 9999px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .tech-badge i {
+            margin-right: 0.25rem;
+        }
+        
+        .fashion-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .fashion-item {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+            background-color: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .fashion-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .fashion-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .fashion-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+        }
+        
+        .fashion-item-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem;
+            color: white;
+            font-weight: 500;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white bg-opacity-95 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-900">Цифровое пространство и культура</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Мой прогресс</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Блоки курса</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Задания</a>
+                        <a href="#" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Ресурсы</a>
+                        <div class="relative group">
+                            <button class="flex items-center space-x-1 text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                                <span>Иван Петров</span>
+                                <i class="fas fa-chevron-down text-xs"></i>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden group-hover:block">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Личный кабинет</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Настройки</a>
+                                <div class="border-t border-gray-200"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Выйти</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden md:hidden fixed inset-0 z-40 bg-white bg-opacity-95 pt-16">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Мой прогресс</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Блоки курса</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Задания</a>
+            <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Ресурсы</a>
+            <div class="border-t border-gray-200 w-full pt-4 mt-2">
+                <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Личный кабинет</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Настройки</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium text-gray-900">Выйти</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="pt-24 pb-12 px-4 sm:px-6 lg:px-8">
+        <!-- Block Header -->
+        <section id="block-header" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="block-header rounded-xl p-6 md:p-8 shadow-sm">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <div class="bg-purple-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4">
+                                    3
+                                </div>
+                                <h1 class="text-2xl md:text-3xl font-bold">Цифровая мода. От функциональности к виртуальному стилю</h1>
+                            </div>
+                            <p class="text-gray-600">Как мода может быть цифровой? Исследуем новые тенденции и технологии</p>
+                        </div>
+                        <div class="mt-4 md:mt-0">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <div class="text-sm text-gray-500 mb-1">Прогресс блока</div>
+                                    <div class="text-xl font-bold">25%</div>
+                                </div>
+                                <div class="w-32">
+                                    <div class="h-2 bg-gray-200 rounded-full">
+                                        <div class="h-full bg-purple-600 rounded-full" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lessons Section -->
+        <section id="lessons" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Материалы блока</h2>
+                <div class="space-y-6">
+                    <!-- Lesson 1 -->
+                    <div class="lesson-card bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-3/4 mb-6 md:mb-0">
+                                <h3 class="text-lg font-bold mb-2">Как мода может быть цифровой?</h3>
+                                <p class="text-gray-600 mb-4">Исследуем концепцию цифровой моды и ее отличие от традиционной.</p>
+                                <div class="flex items-center">
+                                    <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded mr-2">
+                                        <i class="fas fa-play-circle mr-1"></i> Видео
+                                    </span>
+                                    <span class="text-sm text-gray-500">Длительность: 18 мин</span>
+                                </div>
+                            </div>
+                            <div class="md:w-1/4 flex items-center justify-end">
+                                <button class="btn-primary text-white font-medium py-2 px-6 rounded-lg">
+                                    Смотреть <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 2 -->
+                    <div class="lesson-card bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-3/4 mb-6 md:mb-0">
+                                <h3 class="text-lg font-bold mb-2">Новые тенденции: цвет, материал, форма</h3>
+                                <p class="text-gray-600 mb-4">Анализ материалов из Figma и всего хода исследования.</p>
+                                <div class="flex items-center">
+                                    <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded mr-2">
+                                        <i class="fas fa-images mr-1"></i> Галерея
+                                    </span>
+                                    <span class="text-sm text-gray-500">15 материалов</span>
+                                </div>
+                            </div>
+                            <div class="md:w-1/4 flex items-center justify-end">
+                                <button class="btn-primary text-white font-medium py-2 px-6 rounded-lg">
+                                    Открыть <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 3 -->
+                    <div class="lesson-card bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-3/4 mb-6 md:mb-0">
+                                <h3 class="text-lg font-bold mb-2">Реальные примеры "цифровой" одежды</h3>
+                                <p class="text-gray-600 mb-4">Разбор кейсов цифровой моды от ведущих брендов.</p>
+                                <div class="flex items-center">
+                                    <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded mr-2">
+                                        <i class="fas fa-play-circle mr-1"></i> Видео
+                                    </span>
+                                    <span class="text-sm text-gray-500">Длительность: 22 мин</span>
+                                </div>
+                            </div>
+                            <div class="md:w-1/4 flex items-center justify-end">
+                                <button class="btn-primary text-white font-medium py-2 px-6 rounded-lg">
+                                    Смотреть <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Player Section -->
+        <section id="video" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Текущий урок</h2>
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-gray-200 bg-gray-50">
+                        <h3 class="font-medium">Как мода может быть цифровой?</h3>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4 border-t border-gray-200 bg-gray-50 flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-purple-600"></i>
+                            </div>
+                            <span class="text-sm text-gray-600">Урок просмотрен</span>
+                        </div>
+                        <button class="text-purple-600 hover:text-purple-800 font-medium">
+                            Следующий урок <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Digital Fashion Showcase -->
+        <section id="showcase" class="section mb-12">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Примеры цифровой моды</h2>
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden p-6">
+                    <p class="text-gray-600 mb-6">В этом разделе представлены реальные примеры цифровой одежды от ведущих брендов и дизайнеров.</p>
+                    
+                    <div class="fashion-showcase">
+                        <div class="fashion-item">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Цифровое платье">
+                            <div class="fashion-item-title">NFT платье "Galaxy"</div>
+                        </div>
+                        <div class="fashion-item">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Виртуальные кроссовки">
+                            <div class="fashion-item-title">AR кроссовки</div>
+                        </div>
+                        <div class="fashion-item">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="3D-печатный аксессуар">
+                            <div class="fashion-item-title">3D-печатный аксессуар</div>
+                        </div>
+                        <div class="fashion-item">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Умная ткань">
+                            <div class="fashion-item-title">Умная ткань с LED</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="font-bold mb-3">Используемые технологии:</h4>
+                        <div>
+                            <span class="tech-badge"><i class="fas fa-cube"></i> 3D-печать</span>
+                            <span class="tech-badge"><i class="fas fa-mobile-screen"></i> Дополненная реальность</span>
+                            <span class="tech-badge"><i class="fas fa-bolt"></i> Умные ткани</span>
+                            <span class="tech-badge"><i class="fas fa-image"></i> NFT</span>
+                            <span class="tech-badge"><i class="fas fa-robot"></i> ИИ-дизайн</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Task Section -->
+        <section id="task" class="section">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-xl font-bold mb-6">Итоговое задание блока 3</h2>
+                <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-purple-50 to-indigo-50">
+                        <h3 class="text-lg font-bold mb-2">Исследование исторического феномена моды</h3>
+                        <p class="text-gray-600">Изучите исторический феномен или ключевой стиль в истории моды и предложите концепцию его цифровой модернизации.</p>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Описание задания:</h4>
+                        <p class="text-gray-600 mb-6">
+                            Изучите исторический феномен или ключевой стиль в истории моды - это может быть эпоха, известный тренд, дизайнерская инновация или культурный феномен, связанный с одеждой и стилем. На основе анализа его культурного значения и функциональных особенностей предложите концепцию внедрения цифровых технологий и элементов цифровой моды для его модернизации или переосмысления.
+                        </p>
+                        
+                        <h4 class="font-bold mb-4">Формат выполнения:</h4>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-2 mb-6">
+                            <li>Объём текста: 400-800 слов</li>
+                            <li>Структура: краткий обзор, анализ, концепция цифрового улучшения, обоснование, вывод</li>
+                            <li>Дополнительные материалы: эскизы, схемы, мудборды (по желанию)</li>
+                        </ul>
+                        
+                        <h4 class="font-bold mb-4">Этапы выполнения:</h4>
+                        <div class="space-y-6">
+                            <div class="task-step">
+                                <h5 class="font-bold mb-2">Выбор исторического феномена</h5>
+                                <p class="text-gray-600">Выберите исторический феномен моды для исследования (например, кринолины Викторианской эпохи, мини-юбки 1960-х, японский стиль 1980-х и т.д.)</p>
+                            </div>
+                            
+                            <div class="task-step">
+                                <h5 class="font-bold mb-2">Анализ культурного контекста</h5>
+                                <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                    <li>Культурное и социальное значение выбранного феномена</li>
+                                    <li>Ключевые функции и символика</li>
+                                    <li>Особенности материалов, форм и цветов</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="task-step">
+                                <h5 class="font-bold mb-2">Концепция цифрового улучшения</h5>
+                                <p class="text-gray-600">Предложите, какие цифровые технологии или продукты можно внедрить для обновления или расширения функционала и смысла выбранного феномена:</p>
+                                <div class="mt-2">
+                                    <span class="tech-badge"><i class="fas fa-cube"></i> 3D-печать</span>
+                                    <span class="tech-badge"><i class="fas fa-mobile-screen"></i> Дополненная реальность</span>
+                                    <span class="tech-badge"><i class="fas fa-bolt"></i> Умные ткани</span>
+                                    <span class="tech-badge"><i class="fas fa-robot"></i> ИИ-дизайн</span>
+                                    <span class="tech-badge"><i class="fas fa-image"></i> NFT</span>
+                                </div>
+                            </div>
+                            
+                            <div class="task-step">
+                                <h5 class="font-bold mb-2">Обоснование концепции</h5>
+                                <p class="text-gray-600">Объясните, каким образом цифровая мода усилит культурное значение, повысит удобство, экологичность или персонализацию выбранного феномена.</p>
+                            </div>
+                            
+                            <div class="task-step">
+                                <h5 class="font-bold mb-2">Вывод</h5>
+                                <p class="text-gray-600">Сформулируйте краткий вывод о перспективах цифровой моды в историческом контексте.</p>
+                            </div>
+                            
+                            <div class="task-step">
+                                <h5 class="font-bold mb-2">Оформление работы</h5>
+                                <p class="text-gray-600">Оформите работу в виде текстового документа с возможным добавлением визуальных материалов (эскизы, схемы, мудборды).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 border-t border-gray-200 pt-6">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                                <div class="mb-4 md:mb-0">
+                                    <h4 class="font-bold mb-2">Срок сдачи:</h4>
+                                    <p class="text-gray-600">25 августа 2023 года</p>
+                                </div>
+                                <div>
+                                    <button class="btn-primary text-white font-medium py-2 px-6 rounded-lg">
+                                        Отправить задание <i class="fas fa-paper-plane ml-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 py-8 border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-500 text-sm">
+                        © 2023 Цифровое пространство и культура. Все права защищены.
+                    </p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-purple-600">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-purple-600">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-purple-600">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll reveal animation
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
